@@ -1,19 +1,7 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import errorIcon from '../img/error.svg';
-// iziToast.show({
-//   title: 'Hey',
-//   message: 'What would you like to add?',
-// });
-
-const objOk = {
-  title: '✅',
-  message: ` Fulfilled promise in ()ms`,
-  backgroundColor: 'green',
-  timeout: 5000,
-  position: 'topCenter',
-};
-const objErro = {};
+import okIcon from '../img/ok.svg';
 
 const formEl = document.querySelector('.form');
 
@@ -24,24 +12,38 @@ formEl.addEventListener('submit', evt => {
     delay: formData.get('delay'),
     state: formData.get('state'),
   };
+
   createPromise(userData.delay, userData.state)
     .then(() => {
       setTimeout(() => {
-        return iziToast.show(objOk, userData.delay);
+        return iziToast.success({
+          iconUrl: okIcon,
+          title: 'OK',
+          message: ` Fulfilled promise in ${userData.delay} ms`,
+          messageColor: '#fff',
+          titleColor: '#fff',
+          backgroundColor: '#59a10d',
+          timeout: 5000,
+          position: 'topRight',
+        });
       }, userData.delay);
     })
     .catch(() => {
       setTimeout(() => {
         return iziToast.error({
           iconUrl: errorIcon,
-          message: ` Rejected promise in ${userData.delay}ms`,
+          title: 'ERROR',
+          titleColor: '#fff',
+          message: ` Rejected promise in ${userData.delay} ms`,
           backgroundColor: '#ef4040',
           messageColor: '#fff',
           timeout: 5000,
-          position: 'topLeft',
+          position: 'topRight',
         });
       }, userData.delay);
     });
+
+  evt.target.reset();
 });
 
 function createPromise(delay, state) {

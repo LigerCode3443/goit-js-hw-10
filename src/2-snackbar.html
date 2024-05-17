@@ -5,14 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Page 3</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/2-snackbar.css" />
   </head>
   <body>
     <section>
-      <a href="./index.html">Go to home</a>
-      <h1>Welcome to page 3</h1>
+      <a href="./index.html">
+        <svg
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          width="200"
+          height="30"
+          viewBox="0 0 512 512"
+        >
+          <g id="icomoon-ignore"></g>
+          <path d="M16 256l240 240v-144h256v-192h-256v-144z"></path>
+        </svg>
+      </a>
+      <h1>Promise</h1>
     </section>
     <form class="form">
-      <label>
+      <label class="label-input">
         Delay (ms)
         <input type="number" name="delay" required />
       </label>
@@ -20,7 +38,13 @@
       <fieldset>
         <legend>State</legend>
         <label>
-          <input type="radio" name="state" value="fulfilled" required />
+          <input
+            class="input-chekc"
+            type="radio"
+            name="state"
+            value="fulfilled"
+            required
+          />
           Fulfilled
         </label>
         <label>
@@ -29,7 +53,7 @@
         </label>
       </fieldset>
 
-      <button type="submit">Create notification</button>
+      <button type="submit" class="btn-create">Create notification</button>
     </form>
     <script type="module" src="./js/2-snackbar.js"></script>
   </body>
