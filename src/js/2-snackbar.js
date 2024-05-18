@@ -9,38 +9,34 @@ formEl.addEventListener('submit', evt => {
   evt.preventDefault();
   const formData = new FormData(formEl);
   const userData = {
-    delay: formData.get('delay'),
+    delay: Number(formData.get('delay')),
     state: formData.get('state'),
   };
 
   createPromise(userData.delay, userData.state)
     .then(() => {
-      setTimeout(() => {
-        return iziToast.success({
-          iconUrl: okIcon,
-          title: 'OK',
-          message: ` Fulfilled promise in ${userData.delay} ms`,
-          messageColor: '#fff',
-          titleColor: '#fff',
-          backgroundColor: '#59a10d',
-          timeout: 5000,
-          position: 'topRight',
-        });
-      }, userData.delay);
+      return iziToast.success({
+        iconUrl: okIcon,
+        title: 'OK',
+        message: ` Fulfilled promise in ${userData.delay} ms`,
+        messageColor: '#fff',
+        titleColor: '#fff',
+        backgroundColor: '#59a10d',
+        timeout: 5000,
+        position: 'topRight',
+      });
     })
     .catch(() => {
-      setTimeout(() => {
-        return iziToast.error({
-          iconUrl: errorIcon,
-          title: 'ERROR',
-          titleColor: '#fff',
-          message: ` Rejected promise in ${userData.delay} ms`,
-          backgroundColor: '#ef4040',
-          messageColor: '#fff',
-          timeout: 5000,
-          position: 'topRight',
-        });
-      }, userData.delay);
+      return iziToast.error({
+        iconUrl: errorIcon,
+        title: 'ERROR',
+        titleColor: '#fff',
+        message: ` Rejected promise in ${userData.delay} ms`,
+        backgroundColor: '#ef4040',
+        messageColor: '#fff',
+        timeout: 5000,
+        position: 'topRight',
+      });
     });
 
   evt.target.reset();
