@@ -44,13 +44,13 @@ formEl.addEventListener('submit', evt => {
 
 function createPromise(delay, state) {
   const promise = new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (state === 'fulfilled') {
+    if (state === 'rejected') {
+      reject();
+    } else {
+      setTimeout(() => {
         resolve();
-      } else {
-        reject();
-      }
-    }, delay);
+      }, delay);
+    }
   });
   return promise;
 }
